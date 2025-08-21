@@ -1,0 +1,44 @@
+# --- Python / Django ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+db.sqlite3
+media/
+staticfiles/
+.env
+.env.*
+*.log
+
+# --- Virtualenv ---
+venv/
+ENV/
+env/
+.venv/
+*.bak
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Node / Frontend ---
+node_modules/
+dist/
+build/
+.cache/
+.next/
+.out/
+coverage/
+*.local
+
+# --- Misc ---
+*.lock
