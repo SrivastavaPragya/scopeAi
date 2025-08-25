@@ -1,12 +1,11 @@
 from rest_framework.decorators import api_view
+from django.conf import settings
+from pathlib import Path
 from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Job, Source, Result
 from .serializers import StartupRequestSerializer, JobSerializer
-
-# yahan apne pipeline import kar
-# path check kar le, agar services folder app ke andar hai toh:
 from services.pipeline import run_startup_pipeline
 
 MAX_LINKS = 4
@@ -20,7 +19,7 @@ def startup_analysis(request):
     data = serializer.validated_data
 
     prompt = data["prompt"]
-    include_pptx = data["include_pptx"]
+    include_pptx = data.get("include_pptx", False)   
     urls = data.get("urls")
 
     # 2) create a job entry
@@ -32,34 +31,35 @@ def startup_analysis(request):
     )
 
     try:
-        # 3) actual pipeline call
-        result = run_startup_pipeline(prompt=prompt, urls=urls)
+        # 3) pipeline call
+        result = run_startup_pipeline(prompt=prompt, urls=urls, include_pptx=include_pptx)
 
-        # 4) sources save karo
-        for src in result["sources"]:
+        # 4) save sources
+        for src in result.get("sources", []):
             Source.objects.create(
                 job=job,
-                url=src["url"],
-                title=src["title"],
-                snippet=src["snippet"]
+                url=src.get("url"),
+                title=src.get("title"),
+                snippet=src.get("snippet")
             )
 
-        # 5) result save karo
+        # 5) save result
         Result.objects.create(
             job=job,
-            summary=result["summary"],
-             facts=[], 
-            competitors=result["competitors"],
-            market=result["market"],
-            report_md_path=result["artifacts"].get("report_md_path"),
-            pptx_path=result["artifacts"].get("pptx_path"),
-            model_name=result["model"]["name"]
+            summary=result.get("summary", ""),
+            facts=result.get("facts", []),
+            competitors=result.get("competitors", []),
+            market=result.get("market", {}),
+            report_md_path=result.get("artifacts", {}).get("report_md_path"),
+            pptx_path=result.get("artifacts", {}).get("pptx_path"),
+            model_name=result.get("model", {}).get("name")
         )
 
-        # 6) job complete
+        # 6) update job
         job.status = Job.Status.DONE
         job.save(update_fields=["status", "updated_at"])
 
+        # return job with pptx_path also
         return Response(JobSerializer(job).data, status=status.HTTP_200_OK)
 
     except Exception as e:
