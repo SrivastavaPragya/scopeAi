@@ -45,8 +45,6 @@ def _clean_html_to_text(raw: str) -> str:
 
     #load_pages basically ye kar raha hai:
 
-#tumne list of urls di → [url1, url2, url3...]
-
 #function ek-ek url leta hai loop ke andar (for u in urls:)
 
 #us url ka html load karta hai (WebBaseLoader)
@@ -55,7 +53,7 @@ def _clean_html_to_text(raw: str) -> str:
 
 #title + text + url ko tuple bana ke output list me daal deta hai
 
-#to end me tumhe milega ek list of tuples → jisme har tuple ek url ka clean result hai.
+
 
 def load_pages(urls: List[str]) -> List[Tuple[str, str, str]]:
     """

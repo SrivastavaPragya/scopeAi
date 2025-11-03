@@ -54,5 +54,5 @@ class Result(models.Model):
     report_md_path = models.CharField(max_length=1000, blank=True, null=True)
     pptx_path = models.CharField(max_length=1000, blank=True, null=True)
 
-    model_name = models.CharField(max_length=100, default="gemini-1.5-flash-8b")
+    model_name = models.CharField(max_length=100, default="gemini-2.5-flash")
     generated_at = models.DateTimeField(auto_now_add=True)

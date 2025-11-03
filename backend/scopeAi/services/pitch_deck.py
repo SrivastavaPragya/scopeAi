@@ -13,7 +13,7 @@ from langchain.output_parsers import PydanticOutputParser
 from .config import MODEL_NAME, SECRET_KEY
 import uuid
 
-DEFAULT_MODEL = "gemini-1.5-flash-8b"
+DEFAULT_MODEL = "gemini-2.5-flash"
 
 # ---- Structured outline from LLM ----
 class Slide(BaseModel):
