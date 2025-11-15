@@ -16,7 +16,7 @@ const Hero = () => {
         transition={{ duration: 0.6 }}
         className="mb-4 text-sm glass sm:text-base px-4 py-1.5 rounded-full"
       >
-        🚀 AI-Powered Validation Platform
+        🚀 AI-Powered Eva
       </motion.div>
 
       <motion.h1

@@ -9,7 +9,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { href: "/", label: "Home" },
+    { href: "/", label: "Meet Eva" },
     { href: "/about", label: "About" },
     { href: "/pricing", label: "Pricing" },
     { href: "/analyze", label: "Analyzer" },

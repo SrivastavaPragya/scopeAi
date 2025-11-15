@@ -53,6 +53,16 @@
   }
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overscroll-behavior: none;
+}
+
 .grid-background {
   background-image: linear-gradient(
       rgba(59, 130, 246, 0.03) 1px,
@@ -99,14 +109,4 @@
   66% {
     transform: translate(-100px, 100px) scale(0.9);
   }
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  overscroll-behavior: none;
 }
