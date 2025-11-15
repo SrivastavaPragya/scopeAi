@@ -104,7 +104,7 @@ import React from "react";
 
 const IdeaValidator = () => {
   return (
-    <section className="relative grid-background bg-[#0a0e1a] text-white py-4 overflow-hidden">
+    <section className="relative grid-background bg-[#0a0e1a] text-white py-4 px-[4rem] overflow-hidden">
       {/* Gradient orbs */}
       <div className="gradient-orb-1 top-0 left-0" />
       <div className="gradient-orb-2 bottom-0 right-0" />

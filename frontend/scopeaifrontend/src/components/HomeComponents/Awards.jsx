@@ -130,40 +130,40 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Sophia Patel",
-    title: "Founder, GrowthWave",
-    image: "/user1.jpg",
-    text: "This platform revolutionized our product validation process. The AI insights saved us months of guesswork!",
+    name: "Olivia Morgan",
+    title: "CTO, QuantumLeap Systems",
+    image: "/user7.jpg",
+    text: "The analysis depth is unbelievable. Our team relies on it daily for fast, accurate market intelligence.",
   },
   {
-    name: "James Carter",
-    title: "Head of Product, NovaTech",
-    image: "/user2.jpg",
-    text: "Incredible accuracy and speed. The automation workflow felt like having an extra analyst on our team.",
+    name: "Arjun Mehta",
+    title: "Founder, Innovexa Labs",
+    image: "/user8.jpg",
+    text: "Feels like having a senior strategist on call 24/7. Clean UI, smart insights, and truly actionable output.",
   },
   {
-    name: "Emily Zhang",
-    title: "CEO, DataForge AI",
-    image: "/user3.jpg",
-    text: "A perfect blend of design, intelligence, and usability. It’s now an essential part of our product pipeline.",
+    name: "Mia Thompson",
+    title: "Product Manager, AeroStack",
+    image: "/user9.jpg",
+    text: "The speed and clarity of insights blew us away. It turned complex research into a smooth, guided experience.",
   },
   {
-    name: "Liam Walker",
-    title: "Growth Lead, PixelEdge",
-    image: "/user4.jpg",
-    text: "Every detail of this AI experience feels polished. The glow theme and responsiveness are top-notch.",
+    name: "Noah Rivera",
+    title: "Strategy Lead, CircuitHive",
+    image: "/user10.jpg",
+    text: "We tested dozens of AI tools — this one stands out. The precision of the recommendations is unmatched.",
   },
   {
-    name: "Ava Rodriguez",
-    title: "COO, SynthMind Labs",
-    image: "/user5.jpg",
-    text: "An AI platform that actually delivers value. The 3D tilt visuals and precision analytics impressed our entire team.",
+    name: "Harper Lin",
+    title: "CEO, VisionPulse",
+    image: "/user11.jpg",
+    text: "Beautiful interface, flawless performance. It’s now part of every pitch deck and decision we make.",
   },
   {
-    name: "Daniel Kim",
-    title: "VP Marketing, CloudAxis",
-    image: "/user6.jpg",
-    text: "This tool is futuristic yet intuitive. It made data-driven decision-making seamless and efficient.",
+    name: "Ethan Brooks",
+    title: "Head of Innovation, CoreBridge",
+    image: "/user12.jpg",
+    text: "A truly next-gen platform. The insights feel handcrafted — yet delivered instantly by AI.",
   },
 ];
 
@@ -180,12 +180,9 @@ const Testimonials = () => {
   return (
     <section
       id="Testimonials"
-      className="relative py-24 px-6 md:px-12 lg:px-20 bg-[#0a0e1a] text-white overflow-hidden"
+      className="relative py-24 px-6 lg:px-[5rem] bg-[#0a0e1a] min-h-screen  grid-background text-white overflow-hidden"
     >
       {/* Background Effects */}
-      <div className="gradient-orb-1 top-0 left-0 opacity-30" />
-      <div className="gradient-orb-2 bottom-0 right-0 opacity-30" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(10,15,30,0.6)_0%,#030712_80%)]" />
 
       {/* Header */}
       <motion.div

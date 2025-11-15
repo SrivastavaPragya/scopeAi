@@ -10,6 +10,7 @@ import {
   Users,
   Shield,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Variants for smooth transitions
 const fadeInUp = {
@@ -27,6 +28,7 @@ const containerStagger = {
 };
 
 const FeatureSection = () => {
+  const router = useRouter();
   const features = [
     {
       icon: Shield,
@@ -149,7 +151,12 @@ const FeatureSection = () => {
           </p>
 
           <div className="flex justify-center">
-            <motion.button className="bg-gradient-to-r flex justify-center items-center from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg px-[3rem] py-3 rounded-full shadow-2xl shadow-blue-500/30 group">
+            <motion.button
+              className="bg-gradient-to-r flex justify-center items-center from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg px-[3rem] py-3 rounded-full shadow-2xl shadow-blue-500/30 group"
+              onClick={() => {
+                router.push("/analyze");
+              }}
+            >
               Start Analyzing Now
               <ArrowRight className="ml-2 w-5 h-8 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.button>

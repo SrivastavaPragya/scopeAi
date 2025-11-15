@@ -12,7 +12,7 @@ export default function Header() {
     { href: "/", label: "Meet Eva" },
     { href: "/about", label: "About" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/analyze", label: "Analyzer" },
+    // { href: "/analyze", label: "Analyzer" },
     // { href: "/blog", label: "Blog" },
     { href: "/api-docs", label: "API Docs" },
     { href: "/contact", label: "Contact" },
