@@ -27,6 +27,7 @@ def search_links(prompt: str, limit: int | None = None) -> List[str]:
             urls.append(u)
             if len(urls) >= k:
                 break
+    print("urls are ",urls)
     return urls
 
 def prepare_urls(user_urls: list[str] | None, prompt: str) -> List[str]:
@@ -37,4 +38,6 @@ def prepare_urls(user_urls: list[str] | None, prompt: str) -> List[str]:
             if u and u not in seen:
                 seen.add(u); clean.append(u)
         return clean[:MAX_LINKS]
+
     return search_links(prompt, MAX_LINKS)
+

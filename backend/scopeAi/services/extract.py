@@ -1,9 +1,28 @@
 from typing import List, Tuple
+from urllib.parse import urlparse
 from langchain_community.document_loaders import WebBaseLoader
 from bs4 import BeautifulSoup
 from readability import Document
 
+BLACKLIST_DOMAINS = [
+    "pinterest.com",
+    "facebook.com",
+    "instagram.com",
+    "tiktok.com",
+    "twitter.com",
+    "x.com",
+    "glassdoor.com",    # Blocks simple scrapers
+]
 
+def _is_blacklisted(url: str) -> bool: 
+    try:
+        domain = urlparse(url).netloc.lower()
+        for bl in BLACKLIST_DOMAINS:
+            if bl in domain:
+                return True
+        return False
+    except Exception:
+        return True # Block if URL is completely invalid
 
 
 def _looks_like_html(s: str) -> bool:
@@ -62,10 +81,16 @@ def load_pages(urls: List[str]) -> List[Tuple[str, str, str]]:
     """
     out: List[Tuple[str, str, str]] = []
     for u in urls:
+        # Validation 1: Check Domain Blacklist
+        if _is_blacklisted(u):
+            print(f"Skipping blacklisted URL: {u}")
+            continue
+
         try:
             docs = WebBaseLoader(u).load()
             if not docs:
                 continue
+           
             d = docs[0]
             html_or_text = d.page_content or ""
             text = _clean_html_to_text(html_or_text)
@@ -73,8 +98,15 @@ def load_pages(urls: List[str]) -> List[Tuple[str, str, str]]:
                      or d.metadata.get("og:title")
                      or d.metadata.get("source")
                      or None)
-            if len(text) > 200:
+           
+            
+            # Validation 2: Word Count Filter
+            word_count = len(text.split())
+            if word_count >= 50:
                 out.append((u, title, text[:12000]))  # cap per page
-        except Exception:
+            else:
+                print(f"Skipping {u} due to low word count ({word_count} words). Probably blocked/captcha.")
+        except Exception as e:
+            print(f"Error loading {u}: {e}")
             continue
     return out

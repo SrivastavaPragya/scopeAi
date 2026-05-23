@@ -6,6 +6,7 @@ from django.conf import settings
 from .config import MODEL_NAME
 from .search import prepare_urls
 from .extract import load_pages
+from .validation import filter_relevant_pages
 from .summarize import summarize_pages
 from .pitch_deck import generate_outline, build_pitch_pptx
 
@@ -29,15 +30,27 @@ def run_startup_pipeline(
 
     # Step 1: get candidate URLs
     link_list = prepare_urls(urls, prompt)
+    print("preparing urls")
     if not link_list:
         raise RuntimeError("No links found. Provide 'urls' or adjust search.")
 
     # Step 2: extract page content
+    print("extracting page content")
     pages: List[Tuple[str, str, str]] = load_pages(link_list)
     if not pages:
+        print("no pages found")
         raise RuntimeError("No page content extracted from links.")
 
+    # Step 2.5: filter relevant pages using Qdrant vector search
+    print("filtering relevant pages")
+    pages = filter_relevant_pages(prompt, pages)
+    
+    if not pages:
+        print("no pages found after filtering")
+        raise RuntimeError("No pages were relevant enough to the startup idea after Qdrant validation.")
+
     # Step 3: run LLM summarization
+    print("summarizing pages")
     analysis = summarize_pages(prompt, pages)
 
     # Step 4: sources meta (for db + response)

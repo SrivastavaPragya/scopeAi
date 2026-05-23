@@ -71,7 +71,7 @@ def generate_outline(idea: str, model_name: str = DEFAULT_MODEL) -> DeckOutline:
     llm = ChatGoogleGenerativeAI(
         model=model_name, 
         temperature=0, 
-        google_api_key=SECRET_KEY
+        google_api_key="AIzaSyCOTvBKsK0yWR5m8_LTUv7oIiTLzVdMQZk"
     )
 
     prompt = ChatPromptTemplate.from_template(OUTLINE_TMPL)

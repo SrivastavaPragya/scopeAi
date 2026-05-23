@@ -125,7 +125,9 @@ CONTENT:
     llm = ChatGoogleGenerativeAI(
         model=MODEL_NAME,
         temperature=0,  # Maximum determinism
-        google_api_key=SECRET_KEY,
+        # google_api_key="AIzaSyCnf8DLpUAOrXgzhG7XJYKZN8XcJjUMq5w",
+        google_api_key="AIzaSyCOTvBKsK0yWR5m8_LTUv7oIiTLzVdMQZk",
+     
         response_mime_type="application/json",
         top_p=0.95,  # Slightly reduce randomness
         top_k=40,    # Limit vocabulary considerations
