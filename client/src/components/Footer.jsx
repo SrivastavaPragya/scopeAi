@@ -77,7 +77,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative  pt-20 pb-8 border-t bg-[#060b17]    grid-background  border-white/5">
+    <footer className="relative  pt-20 pb-8 border-t bg-[#060b17]  grid-background  border-white/5">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
       <div className="container mx-auto px-6">
