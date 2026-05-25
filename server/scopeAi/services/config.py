@@ -12,12 +12,8 @@ CHUNK_OVERLAP = 200
 MODEL_NAME = "gemini-2.5-flash"
 MAP_MAX_CALLS = 6
 
-# SECRET_KEY is retained temporarily for existing local .env files.
-GEMINI_API_KEY = (
-    os.getenv("GEMINI_API_KEY")
-    or os.getenv("GOOGLE_API_KEY")
-    or os.getenv("SECRET_KEY")
-)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 
 
 def require_gemini_api_key() -> str:

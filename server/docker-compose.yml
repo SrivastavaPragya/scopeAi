@@ -1,12 +1,38 @@
 services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    container_name: scopeai-qdrant
+  web:
+    build:
+      context: ./scopeAi
+    container_name: scopeai-server
+    restart: unless-stopped
+    env_file:
+      - ./scopeAi/.env
+    environment:
+      DATABASE_URL: sqlite:////app/data/db.sqlite3
+      MEDIA_ROOT: /app/media
+      STATIC_ROOT: /app/staticfiles
+      QDRANT_URL: http://qdrant:6333
+      DJANGO_DEBUG: "False"
+      DJANGO_SERVE_MEDIA: "True"
+    depends_on:
+      - qdrant
     ports:
-      - "6333:6333"
-      - "6334:6334"
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - django_data:/app/data
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+
+  qdrant:
+    image: qdrant/qdrant:v1.18.0
+    container_name: scopeai-qdrant
+    restart: unless-stopped
+    expose:
+      - "6333"
     volumes:
       - qdrant_data:/qdrant/storage
 
 volumes:
+  django_data:
+  media_data:
+  static_data:
   qdrant_data:
