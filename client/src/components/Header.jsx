@@ -51,7 +51,7 @@ export default function Header() {
 
             <div className="flex items-center space-x-4">
               <Link href="/analyze" className="hidden md:block">
-                <button className="relative bg-gradient-to-r px-3 py-2 rounded-md from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30">
+                <button className="relative bg-linear-to-r px-3 py-2 rounded-md from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30">
                   Get Started
                 </button>
               </Link>
@@ -99,7 +99,7 @@ export default function Header() {
                 </motion.div>
               ))}
               <Link href="/analyzer" onClick={() => setIsOpen(false)}>
-                <button className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30">
+                <button className="w-full bg-linear-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30">
                   Get Started
                 </button>
               </Link>

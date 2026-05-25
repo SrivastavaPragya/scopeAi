@@ -54,7 +54,7 @@ const Hero = () => {
         className="flex flex-wrap group items-center justify-center gap-4 mt-8"
       >
         <button
-          className="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white font-medium rounded-lg shadow-md hover:opacity-90 transition flex items-center gap-2"
+          className="px-6 py-3 bg-linear-to-r from-blue-500 to-teal-400 text-white font-medium rounded-lg shadow-md hover:opacity-90 transition flex items-center gap-2"
           onClick={() => {
             router.push("/analyze"); // <-- FIXED
           }}

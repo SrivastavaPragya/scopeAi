@@ -118,17 +118,24 @@
 // export default FullAnalysisPage;
 
 "use client";
-import React, { useEffect, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { FileText, LineChart, BookOpen } from "lucide-react";
 
-const FullAnalysisPage = () => {
-  const [analysis, setAnalysis] = useState(null);
-  const [activeSection, setActiveSection] = useState("summary");
+const subscribe = () => () => {};
+const getServerSnapshot = () => null;
+const getAnalysisSnapshot = () => window.sessionStorage.getItem("analysisData");
 
-  useEffect(() => {
-    const stored = sessionStorage.getItem("analysisData");
-    if (stored) setAnalysis(JSON.parse(stored));
-  }, []);
+const FullAnalysisPage = () => {
+  const storedAnalysis = useSyncExternalStore(
+    subscribe,
+    getAnalysisSnapshot,
+    getServerSnapshot,
+  );
+  const analysis = useMemo(
+    () => (storedAnalysis ? JSON.parse(storedAnalysis) : null),
+    [storedAnalysis],
+  );
+  const [activeSection, setActiveSection] = useState("summary");
 
   if (!analysis)
     return (

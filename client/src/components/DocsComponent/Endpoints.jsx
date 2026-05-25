@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Code, Key, Zap, Shield, Book, Terminal } from "lucide-react";
+import { Book } from "lucide-react";
 
 const Endpoints = () => {
   const fadeIn = {
@@ -29,24 +29,9 @@ const Endpoints = () => {
           {[
             {
               method: "POST",
-              endpoint: "/v1/analyze",
+              endpoint: "/api/startup-analysis",
               description:
-                "Analyze a startup idea and get comprehensive insights",
-            },
-            {
-              method: "GET",
-              endpoint: "/v1/analyses/:id",
-              description: "Retrieve a previously generated analysis by ID",
-            },
-            {
-              method: "GET",
-              endpoint: "/v1/analyses",
-              description: "List all your analyses with pagination",
-            },
-            {
-              method: "POST",
-              endpoint: "/v1/export",
-              description: "Export analysis results to PDF or CSV format",
+                "Analyze a startup idea and optionally generate a pitch deck.",
             },
           ].map((endpoint, index) => (
             <div

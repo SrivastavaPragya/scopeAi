@@ -24,7 +24,7 @@ const price = () => {
       ],
       cta: "Get Started",
       popular: false,
-      gradient: "from-gray-500 to-gray-600",
+      gradient: "from-gray-500/20 to-gray-600/20",
     },
     {
       name: "Pro",
@@ -42,7 +42,7 @@ const price = () => {
       ],
       cta: "Start Pro Trial",
       popular: true,
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-blue-500/20 to-cyan-500/20",
     },
     {
       name: "Enterprise",
@@ -60,7 +60,7 @@ const price = () => {
       ],
       cta: "Contact Sales",
       popular: false,
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-purple-500/20 to-pink-500/20",
     },
   ];
   return (
@@ -97,7 +97,7 @@ const price = () => {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-linear-to-r from-blue-500 to-cyan-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
                     Most Popular
                   </span>
                 </div>
@@ -105,7 +105,7 @@ const price = () => {
 
               <div className="text-center mb-8">
                 <div
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${plan.gradient} bg-opacity-20 flex items-center justify-center mx-auto mb-4`}
+                  className={`w-16 h-16 rounded-2xl bg-linear-to-br ${plan.gradient} flex items-center justify-center mx-auto mb-4`}
                 >
                   <plan.icon className="w-8 h-8 text-white" />
                 </div>
@@ -137,7 +137,7 @@ const price = () => {
               <button
                 className={`w-full ${
                   plan.popular
-                    ? "bg-gradient-to-r from-blue-500 py-3 rounded-md to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-lg shadow-blue-500/30"
+                    ? "bg-linear-to-r from-blue-500 py-3 rounded-md to-cyan-500 hover:from-blue-600 hover:to-cyan-600 shadow-lg shadow-blue-500/30"
                     : "bg-white/10 hover:bg-white/20"
                 } text-white py-3 rounded-md font-semibold`}
               >

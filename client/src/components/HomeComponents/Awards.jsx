@@ -232,12 +232,13 @@ const Testimonials = () => {
                 “{t.text}”
               </p>
               <div className="flex items-center mt-auto space-x-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-[2px]">
-                  <img
-                    src={t.image}
-                    alt={t.name}
-                    className="rounded-full w-full h-full object-cover"
-                  />
+                <div className="w-12 h-12 rounded-full bg-linear-to-tr from-blue-500 to-cyan-400 p-[2px]">
+                  <div
+                    aria-label={t.name}
+                    className="rounded-full w-full h-full bg-[#0c1224] flex items-center justify-center font-semibold text-cyan-300"
+                  >
+                    {t.name.charAt(0)}
+                  </div>
                 </div>
                 <div className="text-left">
                   <h4 className="font-semibold text-white">{t.name}</h4>
@@ -268,12 +269,13 @@ const Testimonials = () => {
                 “{t.text}”
               </p>
               <div className="flex items-center mt-auto space-x-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 p-[2px]">
-                  <img
-                    src={t.image}
-                    alt={t.name}
-                    className="rounded-full w-full h-full object-cover"
-                  />
+                <div className="w-12 h-12 rounded-full bg-linear-to-tr from-blue-500 to-cyan-400 p-[2px]">
+                  <div
+                    aria-label={t.name}
+                    className="rounded-full w-full h-full bg-[#0c1224] flex items-center justify-center font-semibold text-cyan-300"
+                  >
+                    {t.name.charAt(0)}
+                  </div>
                 </div>
                 <div className="text-left">
                   <h4 className="font-semibold text-white">{t.name}</h4>

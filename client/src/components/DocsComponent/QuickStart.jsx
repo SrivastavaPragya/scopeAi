@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Code, Key, Zap, Shield, Book, Terminal } from "lucide-react";
-import React from "react";
+import { Terminal } from "lucide-react";
 
 const QuickStart = () => {
   const fadeIn = {
@@ -30,12 +29,11 @@ const QuickStart = () => {
               <span className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center mr-3 text-sm text-blue-400">
                 1
               </span>
-              Get Your API Key
+              Configure Your Backend URL
             </h3>
             <div className="bg-black/40 rounded-xl p-4 border border-white/5">
-              <code className="text-cyan-400 text-sm">
-                curl -X POST https://api.startupanalyzer.ai/v1/auth/keys \<br />
-                &nbsp;&nbsp;-H "Authorization: Bearer YOUR_TOKEN"
+              <code className="text-cyan-400 text-sm block whitespace-pre">
+                {`NEXT_PUBLIC_API_URL=https://api.yourdomain.com`}
               </code>
             </div>
           </div>
@@ -49,13 +47,12 @@ const QuickStart = () => {
             </h3>
             <div className="bg-black/40 rounded-xl p-4 border border-white/5">
               <code className="text-cyan-400 text-sm block whitespace-pre">
-                {`curl -X POST https://api.startupanalyzer.ai/v1/analyze \\
-  -H "Content-Type: application/json" \\
-  -H "X-API-Key: YOUR_API_KEY" \\
-  -d '{
-    "idea": "AI-powered meal planning app",
-    "analysis_type": "full"
-  }'`}
+                {`curl -X POST https://api.yourdomain.com/api/startup-analysis \\
+	  -H "Content-Type: application/json" \\
+	  -d '{
+	    "prompt": "AI-powered meal planning app",
+	    "include_pptx": false
+	  }'`}
               </code>
             </div>
           </div>
@@ -70,15 +67,15 @@ const QuickStart = () => {
             <div className="bg-black/40 rounded-xl p-4 border border-white/5">
               <code className="text-cyan-400 text-sm block whitespace-pre">
                 {`{
-  "status": "success",
-  "data": {
-    "moat": "AI-driven insights...",
-    "pricing": "Freemium model...",
-    "competitors": ["Notion AI", "Copy.ai"],
-    "target_audience": "Early-stage founders...",
-    "scope": "Global reach with..."
-  }
-}`}
+	  "id": "analysis-job-id",
+	  "status": "DONE",
+	  "result": {
+	    "summary": "Market analysis summary...",
+	    "competitors": ["Competitor A"],
+	    "market": {}
+	  },
+	  "sources": []
+	}`}
               </code>
             </div>
           </div>

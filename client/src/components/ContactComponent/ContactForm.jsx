@@ -18,7 +18,7 @@ const ContactForm = () => {
           Send us a <span className="text-cyan-400">Message</span>
         </h2>
         <p className="text-gray-400 mb-10">
-          Fill out the form below and we'll get back to you shortly
+          Fill out the form below and we&apos;ll get back to you shortly
         </p>
 
         <form className="space-y-6   text-left">
@@ -82,7 +82,7 @@ const ContactForm = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full flex justify-center items-center bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition-all"
+            className="w-full flex justify-center items-center bg-linear-to-r from-blue-500 to-cyan-400 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-cyan-500/20 transition-all"
           >
             <Send className="mr-2" size={18} />
             Send Message

@@ -1,10 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400;
+    @apply bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-cyan-400 to-teal-400;
   }
 
   .glow-border {

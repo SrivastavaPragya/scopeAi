@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import {
   Sparkles,
   Mail,
-  Twitter,
-  Linkedin,
-  Github,
+  Globe2,
+  BriefcaseBusiness,
+  Code2,
   ArrowRight,
   Heart,
 } from "lucide-react";
@@ -70,15 +70,15 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Github, href: "#", label: "GitHub" },
+    { icon: Globe2, href: "#", label: "Website" },
+    { icon: BriefcaseBusiness, href: "#", label: "Company" },
+    { icon: Code2, href: "#", label: "Code" },
     { icon: Mail, href: "mailto:hello@startupanalyzer.ai", label: "Email" },
   ];
 
   return (
     <footer className="relative  pt-20 pb-8 border-t bg-[#060b17]  grid-background  border-white/5">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/50 to-transparent" />
 
       <div className="container mx-auto px-6">
         {/* Newsletter Section */}
@@ -111,7 +111,7 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r rounded-md from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30 px-6"
+                className="bg-linear-to-r rounded-md from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30 px-6"
               >
                 {subscribed ? "✓" : <ArrowRight className="w-5 h-5" />}
               </button>
@@ -197,7 +197,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
+        <div className="h-px bg-linear-to-r from-transparent via-white/10 to-transparent mb-8" />
 
         {/* Bottom Section */}
         <motion.div

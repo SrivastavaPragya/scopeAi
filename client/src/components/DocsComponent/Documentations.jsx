@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Key, Zap, Shield } from "lucide-react";
-import React from "react";
+import { FileSearch, Presentation, Sparkles } from "lucide-react";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
@@ -23,7 +22,7 @@ const Documentations = () => {
           className="text-center mb-20"
         >
           <h1 className="text-6xl md:text-7xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-sky-400 to-blue-500 text-transparent bg-clip-text">
+            <span className="bg-linear-to-r from-sky-400 to-blue-500 text-transparent bg-clip-text">
               API Documentation
             </span>
           </h1>
@@ -37,22 +36,22 @@ const Documentations = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {[
             {
-              icon: Key,
-              title: "Authentication",
+              icon: FileSearch,
+              title: "Market Research",
               description:
-                "Secure API key-based authentication with rate limiting and usage tracking.",
+                "Gather relevant web sources for a startup idea and retain them with the analysis.",
             },
             {
-              icon: Zap,
-              title: "Real-time Analysis",
+              icon: Sparkles,
+              title: "AI Analysis",
               description:
-                "Get instant startup insights with sub-second response times via our optimized endpoints.",
+                "Generate summaries, facts, competitor signals, and structured market insights.",
             },
             {
-              icon: Shield,
-              title: "Enterprise Security",
+              icon: Presentation,
+              title: "Pitch Deck Export",
               description:
-                "Bank-level encryption, SOC 2 compliant infrastructure, and data privacy guarantees.",
+                "Request an optional presentation artifact alongside the completed analysis.",
             },
           ].map((feature, index) => (
             <motion.div

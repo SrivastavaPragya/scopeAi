@@ -31,8 +31,8 @@ const GetInTouch = () => {
           <span className="text-gradient">Get in Touch</span>
         </h1>
         <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-          Have questions? We'd love to hear from you. Send us a message and
-          we'll respond as soon as possible.
+          Have questions? We&apos;d love to hear from you. Send us a message
+          and we&apos;ll respond as soon as possible.
         </p>
       </motion.div>
 

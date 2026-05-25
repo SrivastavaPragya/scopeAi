@@ -152,7 +152,7 @@ const FeatureSection = () => {
 
           <div className="flex justify-center">
             <motion.button
-              className="bg-gradient-to-r flex justify-center items-center from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg px-[3rem] py-3 rounded-full shadow-2xl shadow-blue-500/30 group"
+              className="bg-linear-to-r flex justify-center items-center from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold text-lg px-[3rem] py-3 rounded-full shadow-2xl shadow-blue-500/30 group"
               onClick={() => {
                 router.push("/analyze");
               }}

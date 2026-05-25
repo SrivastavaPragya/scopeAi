@@ -49,7 +49,7 @@ const AnalyzerPage = () => {
         transition={{ duration: 0.6 }}
         className="text-5xl md:text-7xl font-bold mb-3 text-center"
       >
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-cyan-400">
+        <span className="text-transparent bg-clip-text bg-linear-to-r from-sky-400 to-cyan-400">
           AI-Powered
         </span>{" "}
         Startup Analyzer
@@ -81,7 +81,7 @@ const AnalyzerPage = () => {
 
           <button
             onClick={handleAnalyze}
-            className="mt-5 w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 font-semibold flex items-center justify-center gap-2 transition-all duration-300"
+            className="mt-5 w-full py-3 rounded-xl bg-linear-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 font-semibold flex items-center justify-center gap-2 transition-all duration-300"
           >
             <Sparkles size={18} /> Analyze My Idea
           </button>
@@ -125,7 +125,7 @@ const AnalyzerPage = () => {
           <div className="flex justify-center">
             <button
               onClick={handleViewFull}
-              className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300"
+              className="px-6 py-3 bg-linear-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 rounded-xl font-semibold flex items-center gap-2 transition-all duration-300"
             >
               View Complete Analysis
             </button>
