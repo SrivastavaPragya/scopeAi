@@ -14,7 +14,8 @@ services:
       DJANGO_DEBUG: "False"
       DJANGO_SERVE_MEDIA: "True"
     depends_on:
-      - qdrant
+      qdrant:
+        condition: service_started
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
