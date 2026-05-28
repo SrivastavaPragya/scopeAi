@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Menu, X } from "lucide-react";
+import BackendHealthStatus from "./BackendHealthStatus";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,6 +51,8 @@ export default function Header() {
             </div>
 
             <div className="flex items-center space-x-4">
+              <BackendHealthStatus />
+
               <Link href="/analyze" className="hidden md:block">
                 <button className="relative bg-linear-to-r px-3 py-2 rounded-md from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold shadow-lg shadow-blue-500/30">
                   Get Started

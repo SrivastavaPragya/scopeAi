@@ -67,3 +67,9 @@ def startup_analysis(request):
         job.error = str(e)
         job.save(update_fields=["status", "error", "updated_at"])
         return Response({"job_id": str(job.id), "detail": str(e)}, status=500)
+
+
+
+@api_view(["GET"])
+def health_check(request):
+    return Response({"status": "ok"}, status=status.HTTP_200_OK)
