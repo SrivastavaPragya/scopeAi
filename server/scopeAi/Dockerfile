@@ -20,7 +20,7 @@ RUN chmod +x /app/entrypoint.sh
 
 USER app
 
-EXPOSE 8000
+EXPOSE 7860
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "scopeAi.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "2", "--timeout", "180", "--access-logfile", "-", "--error-logfile", "-"]
+CMD ["gunicorn", "scopeAi.wsgi:application", "--bind", "0.0.0.0:7860", "--workers", "2", "--timeout", "180", "--access-logfile", "-", "--error-logfile", "-"]
