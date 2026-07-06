@@ -87,7 +87,7 @@ def load_pages(urls: List[str]) -> List[Tuple[str, str, str]]:
             continue
 
         try:
-            docs = WebBaseLoader(u).load()
+            docs = WebBaseLoader(u, requests_kwargs={"timeout": 10}).load()
             if not docs:
                 continue
            

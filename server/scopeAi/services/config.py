@@ -14,6 +14,7 @@ MAP_MAX_CALLS = 6
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 
 
 def require_gemini_api_key() -> str:

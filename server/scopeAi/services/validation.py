@@ -3,7 +3,7 @@ from typing import List, Tuple
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from .config import QDRANT_URL, require_gemini_api_key
+from .config import QDRANT_URL, QDRANT_API_KEY, require_gemini_api_key
 
 def filter_relevant_pages(prompt: str, pages: List[Tuple[str, str, str]], threshold: float = 0.5) -> List[Tuple[str, str, str]]:
     """
@@ -19,7 +19,7 @@ def filter_relevant_pages(prompt: str, pages: List[Tuple[str, str, str]], thresh
         google_api_key=require_gemini_api_key()
     )
     
-    client = QdrantClient(url=QDRANT_URL)
+    client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
 
     collection_name = f"search_{uuid.uuid4().hex}"
     
