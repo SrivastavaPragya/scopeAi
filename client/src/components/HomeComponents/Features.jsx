@@ -9,12 +9,19 @@ import {
     ShieldCheck,
     Swords
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Features() {
     return (
-        <section className="py-20 md:px-20 px-4  bg-white mx-auto">
+        <section id="features" className="py-20 md:px-20 px-4  bg-white mx-auto">
             {/* Header */}
-            <div className="text-left mb-16 max-w-3xl">
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-left mb-16 max-w-3xl"
+            >
                 <span className="text-xs md:text-sm font-mono font-bold tracking-[0.2em] text-blue-600 uppercase block mb-3">
                     The Control Room
                 </span>
@@ -26,10 +33,16 @@ export default function Features() {
                     One idea in. A full, board-ready validation dossier out. Every module is powered by
                     live web research.
                 </p>
-            </div>
+            </motion.div>
 
             {/* Main Grid Wrapper */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            >
 
                 {/* Left Side: Market Analysis & AI Pitch Deck */}
                 <div className="flex flex-col gap-6 justify-between">
@@ -267,7 +280,7 @@ export default function Features() {
 
                 </div>
 
-            </div>
+            </motion.div>
         </section>
     );
 }

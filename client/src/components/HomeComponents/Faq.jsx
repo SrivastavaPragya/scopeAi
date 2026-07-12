@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Faq() {
     const [openIndex, setOpenIndex] = useState(null);
@@ -34,20 +35,32 @@ export default function Faq() {
     };
 
     return (
-        <section className="py-24 md:px-20 px-6 bg-white border-b border-slate-100">
+        <section id="faq" className="py-24 md:px-20 px-6 bg-white border-b border-slate-100">
             <div className="max-w-4xl mx-auto">
                 {/* Header */}
-                <div className="mb-16">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-16"
+                >
                     <span className="text-xs md:text-sm font-mono font-bold tracking-[0.25em] text-blue-600 uppercase block mb-3">
                         QUESTIONS
                     </span>
                     <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black tracking-[-0.04em] text-slate-900 leading-tight">
                         Everything else you're wondering.
                     </h2>
-                </div>
+                </motion.div>
 
                 {/* FAQ List */}
-                <div className="flex flex-col">
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="flex flex-col"
+                >
                     {faqs.map((faq, index) => {
                         const isOpen = openIndex === index;
                         return (
@@ -82,7 +95,7 @@ export default function Faq() {
                             </div>
                         );
                     })}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

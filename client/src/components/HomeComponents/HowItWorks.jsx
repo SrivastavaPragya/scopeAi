@@ -2,12 +2,19 @@
 
 import React from "react";
 import { Pencil, Globe, FileText } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 md:px-20 px-4 bg-gray-50 border border-gray-200 mx-auto">
+    <section id="how-it-works" className="py-20 md:px-20 px-4 bg-gray-50 border border-gray-200 mx-auto">
       {/* Header Row */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16"
+      >
         <div className="max-w-xl">
           <span className="text-xs md:text-sm font-mono font-bold tracking-[0.2em] text-blue-600 uppercase block mb-3">
             The Workflow
@@ -23,10 +30,16 @@ export default function HowItWorks() {
             internet actually says today.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Grid Container */}
-      <div className="grid grid-cols-1 md:grid-cols-3 bg-white border border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 shadow-sm">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="grid grid-cols-1 md:grid-cols-3 bg-white border border-slate-200 divide-y md:divide-y-0 md:divide-x divide-slate-200 shadow-sm"
+      >
         
         {/* Step 1 */}
         <div className="group p-8 md:p-10 flex flex-col justify-between min-h-[220px] transition-all hover:bg-slate-50/50">
@@ -82,7 +95,7 @@ export default function HowItWorks() {
           </div>
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }

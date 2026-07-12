@@ -1,11 +1,20 @@
+"use client";
+
 import React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function CtaSection() {
     return (
-        <section className="py-24 relative overflow-hidden bg-white md:px-20 px-6">
+        <section id="cta" className="py-24 relative overflow-hidden bg-white md:px-20 px-6">
             <div className=" mx-auto">
-                <div className="relative rounded-[2.5rem] overflow-hidden border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-8 py-16 md:p-20 text-center flex flex-col items-center justify-center shadow-2xl shadow-blue-900/5">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="relative rounded-[2.5rem] overflow-hidden border border-blue-100 bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-8 py-16 md:p-20 text-center flex flex-col items-center justify-center shadow-2xl shadow-blue-900/5"
+                >
 
 
                     {/* Content */}
@@ -38,7 +47,7 @@ export default function CtaSection() {
                             No credit card required. 14-day free trial.
                         </p>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );

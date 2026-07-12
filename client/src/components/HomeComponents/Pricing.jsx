@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { Check } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Pricing() {
     const plans = [
@@ -53,12 +56,18 @@ export default function Pricing() {
     ];
 
     return (
-        <section className="py-24 relative overflow-hidden bg-white">
+        <section id="pricing" className="py-24 relative overflow-hidden bg-white">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/50 rounded-full blur-[100px] pointer-events-none"></div>
             
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="text-center max-w-2xl mx-auto mb-16">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center max-w-2xl mx-auto mb-16"
+                >
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider text-blue-600 bg-blue-50 border border-blue-100 uppercase mb-5">
                         <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
                         Simple Pricing
@@ -69,9 +78,15 @@ export default function Pricing() {
                     <p className="text-slate-500 text-base md:text-lg">
                         Start for free and upgrade as your startup grows. No hidden fees.
                     </p>
-                </div>
+                </motion.div>
 
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+                <motion.div 
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center"
+                >
                     {plans.map((plan, index) => (
                         <div 
                             key={index}
@@ -117,7 +132,7 @@ export default function Pricing() {
                             </div>
                         </div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

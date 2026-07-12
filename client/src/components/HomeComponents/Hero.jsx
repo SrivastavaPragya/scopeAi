@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Globe, ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   const [inputValue, setInputValue] = useState("");
@@ -17,7 +18,12 @@ export default function Hero() {
   return (
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 py-20 text-center overflow-hidden">
       {/* Main Container */}
-      <div className=" mx-auto flex flex-col items-center z-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className=" mx-auto flex flex-col items-center z-10"
+      >
 
         {/* Top Badge */}
         <div className="inline-flex mt-[2.3rem] items-center gap-2 px-3 py-1.5 border border-slate-200 bg-white shadow-sm mb-4">
@@ -99,7 +105,7 @@ export default function Hero() {
           ))}
         </div>
 
-      </div>
+      </motion.div>
 
 
     </section>

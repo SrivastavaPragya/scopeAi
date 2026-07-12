@@ -57,7 +57,7 @@ export default function Testimonial() {
     };
 
     return (
-        <section className="py-20 md:px-20 px-6 bg-gray-50 border-y border-slate-100 overflow-hidden relative">
+        <section id="testimonials" className="py-20 md:px-20 px-6 bg-gray-50 border-y border-slate-100 overflow-hidden relative">
             <div className="max-w-7xl mx-auto">
                 {/* Header section without arrows */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">

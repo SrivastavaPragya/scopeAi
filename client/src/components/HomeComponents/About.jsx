@@ -2,11 +2,12 @@
 
 import React from "react";
 import { Lightbulb, Compass, ShieldCheck, Presentation, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function About() {
 
     return (
-        <section className="py-20 md:px-20 px-6 border-y border-slate-100/80 bg-slate-50 relative overflow-hidden">
+        <section id="about" className="py-20 md:px-20 px-6 border-y border-slate-100/80 bg-slate-50 relative overflow-hidden">
             {/* Dot Pattern Overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1.2px,transparent_1.2px)] [background-size:24px_24px] pointer-events-none z-0"></div>
 
@@ -18,7 +19,13 @@ export default function About() {
                 <div className="flex  gap-4 items-center">
 
                     {/* Left Column: Heading, Paragraphs, Features List & CTA Button */}
-                    <div className=" w-[50%]    flex flex-col justify-center">
+                    <motion.div 
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className=" w-[50%]    flex flex-col justify-center"
+                    >
                         <div className="flex">
                             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-mono font-bold tracking-wider text-blue-600 bg-blue-50 border border-blue-100 uppercase mb-5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
@@ -66,10 +73,16 @@ export default function About() {
                                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </button>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right Column: Services Cards in a Staggered Masonry Grid */}
-                    <div className=" w-[50%]   grid grid-cols-2 gap-4 items-start">
+                    <motion.div 
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className=" w-[50%]   grid grid-cols-2 gap-4 items-start"
+                    >
                         {/* Grid Column 1 */}
                         <div className="flex flex-col gap-4">
                             {/* Card 1: Validation Engine (Short) */}
@@ -135,7 +148,7 @@ export default function About() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                 </div>
 

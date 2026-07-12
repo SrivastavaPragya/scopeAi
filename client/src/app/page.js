@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "@/components/HomeComponents/Navbar";
 import Hero from "@/components/HomeComponents/Hero";
 import Clients from "@/components/HomeComponents/Clients";
 import HowItWorks from "@/components/HomeComponents/HowItWorks";
@@ -26,7 +27,8 @@ export const metadata = createPageMetadata({
 
 export default function Page() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-20">
+      <Navbar />
       <Hero />
       <Clients />
       <HowItWorks />
