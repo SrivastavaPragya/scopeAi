@@ -1,21 +1,18 @@
-import { absoluteUrl } from "./seo";
+export default async function sitemap() {
+  const baseUrl = "https://eva-validate.com";
 
-const routes = [
-  { path: "/", priority: 1, changeFrequency: "weekly" },
-  { path: "/analyze", priority: 0.95, changeFrequency: "weekly" },
-  { path: "/api-docs", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/pricing", priority: 0.75, changeFrequency: "monthly" },
-  { path: "/about", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
-];
-
-export default function sitemap() {
-  const lastModified = new Date();
-
-  return routes.map((route) => ({
-    url: absoluteUrl(route.path),
-    lastModified,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/analysis`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+  ];
 }

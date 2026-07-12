@@ -1,6 +1,6 @@
-# ScopeAI - AI-Powered Startup Analyzer
+# EVA - AI-Powered Startup Analyzer
 
-ScopeAI is a full-stack startup idea research application. A founder describes an
+EVA is a full-stack startup idea research application. A founder describes an
 idea, and the platform searches for relevant public web pages, extracts useful
 content, removes low-relevance sources with vector similarity, and asks a
 generative AI model to produce a structured market analysis. The result is shown
@@ -18,9 +18,9 @@ early validation questions such as:
 
 The application has two main parts:
 
-| Part | Purpose |
-| --- | --- |
-| `client/` | Public-facing Next.js site with landing, about, pricing, API docs, idea analyzer, and detailed analysis pages. |
+| Part              | Purpose                                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------------------------- |
+| `client/`         | Public-facing Next.js site with landing, about, pricing, API docs, idea analyzer, and detailed analysis pages. |
 | `server/scopeAi/` | Django REST API that executes the research and AI pipeline, stores jobs/results, and creates pitch-deck files. |
 
 From the browser, a user enters a startup idea on `/analyze`. The frontend posts
@@ -36,55 +36,55 @@ generation.
 
 ### Frontend
 
-| Technology | Role |
-| --- | --- |
-| Next.js 16 with App Router | Web application routing and rendering |
-| React 19 | Component UI and client-side interaction |
-| Tailwind CSS 4 | Styling, responsive layout, and visual theme |
-| Framer Motion | Page and component animations |
-| Lucide React | Icons |
+| Technology                 | Role                                         |
+| -------------------------- | -------------------------------------------- |
+| Next.js 16 with App Router | Web application routing and rendering        |
+| React 19                   | Component UI and client-side interaction     |
+| Tailwind CSS 4             | Styling, responsive layout, and visual theme |
+| Framer Motion              | Page and component animations                |
+| Lucide React               | Icons                                        |
 
 Available frontend routes include:
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Landing page and platform overview |
-| `/analyze` | Startup idea input and initial summary result |
+| Route            | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `/`              | Landing page and platform overview                       |
+| `/analyze`       | Startup idea input and initial summary result            |
 | `/full-analysis` | Detailed summary, market analysis, and source references |
-| `/about` | Product story and feature explanation |
-| `/pricing` | Pricing presentation page |
-| `/api-docs` | API quick-start information |
-| `/contact` | Contact and support UI |
+| `/about`         | Product story and feature explanation                    |
+| `/pricing`       | Pricing presentation page                                |
+| `/api-docs`      | API quick-start information                              |
+| `/contact`       | Contact and support UI                                   |
 
 ### Backend And Infrastructure
 
-| Technology | Role |
-| --- | --- |
-| Python / Django 5.2 | Server framework, configuration, persistence, and media hosting |
-| Django REST Framework | JSON request validation and API response serialization |
-| SQLite by default | Stores analysis jobs, source metadata, and structured results |
-| `dj-database-url` | Supports replacing SQLite through `DATABASE_URL` |
-| Qdrant 1.18 | Temporary vector collections for source relevance validation |
-| DuckDuckGo `ddgs` | No-key web search when request URLs are not supplied |
-| LangChain WebBaseLoader | Fetches source page content |
-| Readability + Beautiful Soup | Converts fetched content into readable text |
-| `python-pptx` | Writes generated pitch outlines into `.pptx` files |
-| Docker Compose | Runs the API and Qdrant together |
-| Gunicorn + WhiteNoise | Container production server and static file delivery |
+| Technology                   | Role                                                            |
+| ---------------------------- | --------------------------------------------------------------- |
+| Python / Django 5.2          | Server framework, configuration, persistence, and media hosting |
+| Django REST Framework        | JSON request validation and API response serialization          |
+| SQLite by default            | Stores analysis jobs, source metadata, and structured results   |
+| `dj-database-url`            | Supports replacing SQLite through `DATABASE_URL`                |
+| Qdrant 1.18                  | Temporary vector collections for source relevance validation    |
+| DuckDuckGo `ddgs`            | No-key web search when request URLs are not supplied            |
+| LangChain WebBaseLoader      | Fetches source page content                                     |
+| Readability + Beautiful Soup | Converts fetched content into readable text                     |
+| `python-pptx`                | Writes generated pitch outlines into `.pptx` files              |
+| Docker Compose               | Runs the API and Qdrant together                                |
+| Gunicorn + WhiteNoise        | Container production server and static file delivery            |
 
 ## AI Technology Used
 
-ScopeAI does not ask a model to answer from the startup prompt alone. For the
+EVA does not ask a model to answer from the startup prompt alone. For the
 analysis response, it builds a small research context first, then generates a
 structured answer from the selected sources.
 
-| AI Capability | Implementation | Purpose |
-| --- | --- | --- |
-| Language model | Google Gemini `gemini-2.5-flash` through `ChatGoogleGenerativeAI` | Produces the market analysis and pitch-deck outline |
-| AI orchestration | LangChain | Builds prompts, invokes Gemini, and requests structured model output |
-| Embeddings | Google `models/gemini-embedding-2` | Represents the idea and source pages as semantic vectors |
-| Vector validation | Qdrant with 3072-dimensional cosine vectors | Keeps scraped pages whose meaning is sufficiently close to the idea |
-| Output schema | Pydantic models | Constrains generated analysis and deck outline into application-ready structures |
+| AI Capability     | Implementation                                                    | Purpose                                                                          |
+| ----------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Language model    | Google Gemini `gemini-2.5-flash` through `ChatGoogleGenerativeAI` | Produces the market analysis and pitch-deck outline                              |
+| AI orchestration  | LangChain                                                         | Builds prompts, invokes Gemini, and requests structured model output             |
+| Embeddings        | Google `models/gemini-embedding-2`                                | Represents the idea and source pages as semantic vectors                         |
+| Vector validation | Qdrant with 3072-dimensional cosine vectors                       | Keeps scraped pages whose meaning is sufficiently close to the idea              |
+| Output schema     | Pydantic models                                                   | Constrains generated analysis and deck outline into application-ready structures |
 
 ### How Source Relevance Works
 
@@ -157,11 +157,11 @@ Content-Type: application/json
 
 ### Request Body
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `prompt` | string | Yes | Description of the startup idea to investigate |
-| `urls` | string array | No | Source URLs to analyze instead of running search; at most four are used |
-| `include_pptx` | boolean | No | Whether to create a pitch deck; defaults to `true` |
+| Field          | Type         | Required | Description                                                             |
+| -------------- | ------------ | -------- | ----------------------------------------------------------------------- |
+| `prompt`       | string       | Yes      | Description of the startup idea to investigate                          |
+| `urls`         | string array | No       | Source URLs to analyze instead of running search; at most four are used |
+| `include_pptx` | boolean      | No       | Whether to create a pitch deck; defaults to `true`                      |
 
 Example:
 
@@ -324,32 +324,32 @@ Open `http://localhost:3000/analyze` and submit a startup idea.
 Important backend environment variables are defined in
 `server/scopeAi/.env.example`:
 
-| Variable | Purpose |
-| --- | --- |
-| `GEMINI_API_KEY` | Required for Gemini generation and embedding requests |
-| `DJANGO_SECRET_KEY` | Required Django signing secret |
-| `DJANGO_DEBUG` | Enables debug behavior when `True` |
-| `DJANGO_ALLOWED_HOSTS` | Comma-separated permitted API hosts |
-| `CORS_ALLOWED_ORIGINS` | Origins permitted to call the API from a browser |
-| `CSRF_TRUSTED_ORIGINS` | Trusted origins for deployed API access |
-| `QDRANT_URL` | Qdrant service URL; defaults to `http://localhost:6333` |
-| `DATABASE_URL` | Optional database connection; defaults to local SQLite |
-| `MEDIA_ROOT` | Location where generated presentations are saved |
-| `DJANGO_SERVE_MEDIA` | Whether Django exposes generated media files |
+| Variable               | Purpose                                                 |
+| ---------------------- | ------------------------------------------------------- |
+| `GEMINI_API_KEY`       | Required for Gemini generation and embedding requests   |
+| `DJANGO_SECRET_KEY`    | Required Django signing secret                          |
+| `DJANGO_DEBUG`         | Enables debug behavior when `True`                      |
+| `DJANGO_ALLOWED_HOSTS` | Comma-separated permitted API hosts                     |
+| `CORS_ALLOWED_ORIGINS` | Origins permitted to call the API from a browser        |
+| `CSRF_TRUSTED_ORIGINS` | Trusted origins for deployed API access                 |
+| `QDRANT_URL`           | Qdrant service URL; defaults to `http://localhost:6333` |
+| `DATABASE_URL`         | Optional database connection; defaults to local SQLite  |
+| `MEDIA_ROOT`           | Location where generated presentations are saved        |
+| `DJANGO_SERVE_MEDIA`   | Whether Django exposes generated media files            |
 
 The frontend needs:
 
-| Variable | Purpose |
-| --- | --- |
+| Variable              | Purpose                           |
+| --------------------- | --------------------------------- |
 | `NEXT_PUBLIC_API_URL` | Public base URL of the Django API |
 
 ## Data Stored By The Backend
 
-| Model | Stored Data |
-| --- | --- |
-| `Job` | User prompt, supplied URLs, deck preference, processing status, and errors |
-| `Source` | URLs retained after processing, titles, and short extracted snippets |
-| `Result` | Summary, competitor list, market JSON, model name, and artifact paths |
+| Model    | Stored Data                                                                |
+| -------- | -------------------------------------------------------------------------- |
+| `Job`    | User prompt, supplied URLs, deck preference, processing status, and errors |
+| `Source` | URLs retained after processing, titles, and short extracted snippets       |
+| `Result` | Summary, competitor list, market JSON, model name, and artifact paths      |
 
 The source texts used during generation are not saved in full in the database;
 only snippets are stored. Qdrant collections are temporary per request and are
@@ -366,4 +366,3 @@ deleted after relevance filtering.
   generation, persistence, and optional presentation generation finish.
 - Automated test modules are present as placeholders, but no application test
   coverage is currently implemented.
-

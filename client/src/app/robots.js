@@ -1,14 +1,11 @@
-import { absoluteUrl } from "./seo";
-
 export default function robots() {
+  const baseUrl = "https://eva-validate.com";
+
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/full-analysis"],
-      },
-    ],
-    sitemap: absoluteUrl("/sitemap.xml"),
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

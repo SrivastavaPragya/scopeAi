@@ -1,62 +1,73 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-linear-to-r from-blue-400 via-cyan-400 to-teal-400;
-  }
+:root {
+  --background: #ffffff;
+}
 
-  .glow-border {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
 
-  .glass {
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(59, 130, 246, 0.1);
-  }
+  /* Body font */
+  --font-sans: var(--font-plus-jakarta);
 
-  .glass-hover {
-    transition: all 0.3s ease;
-  }
+  /* Heading font */
+  --font-heading: var(--font-geist);
 
-  .glass-hover:hover {
-    background: rgba(15, 23, 42, 0.8);
-    border-color: rgba(59, 130, 246, 0.3);
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-  }
+  --animate-marquee: marquee 35s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 35s linear infinite;
 }
 
 body {
-  background-color: #0a0e1a;
-}
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
 
-.grid-background {
   background-image:
-    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+
+  background-size: 48px 48px;
+  background-position: center top;
+  min-height: 100vh;
 }
 
-.gradient-orb-1 {
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.15) 0%,
-    transparent 60%
-  );
-  filter: blur(80px);
+/* Utility class for headings */
+.font-heading {
+  font-family: var(--font-heading), sans-serif;
 }
 
-.gradient-orb-2 {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(
-    circle,
-    rgba(34, 211, 238, 0.12) 0%,
-    transparent 60%
-  );
-  filter: blur(80px);
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
