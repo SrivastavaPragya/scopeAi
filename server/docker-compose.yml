@@ -11,13 +11,14 @@ services:
       MEDIA_ROOT: /app/media
       STATIC_ROOT: /app/staticfiles
       QDRANT_URL: http://qdrant:6333
+      QDRANT_API_KEY: ""
       DJANGO_DEBUG: "False"
       DJANGO_SERVE_MEDIA: "True"
     depends_on:
       qdrant:
         condition: service_started
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:8000:7860"
     volumes:
       - django_data:/app/data
       - media_data:/app/media

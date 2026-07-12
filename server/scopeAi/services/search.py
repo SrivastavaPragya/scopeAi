@@ -22,15 +22,15 @@ def generate_search_query(prompt: str) -> str:
             google_api_key=require_gemini_api_key(),
         )
         structured_llm = llm.with_structured_output(SearchQueryOut)
-        system_prompt = f"Convert this startup idea into a short, concise 3-4 word search query to analyze its market, pricing, and competitors. Only output the core query string. Idea: {prompt}"
+        system_prompt = f"Convert this startup idea into a highly focused search query to find its competitors, alternatives, and market space. Only output the core query string. Idea: {prompt}"
         res = structured_llm.invoke(system_prompt)
-        # Broaden the query to capture moats, pricing, risks, and segments
-        return res.query + " startup market analysis pricing competitors"
+        # Return the focused query directly instead of appending generic terms
+        return res.query
     except Exception as e:
         print("LLM query gen failed, falling back", e)
         # fallback to taking first few words
-        words = prompt.split()[:5]
-        return " ".join(words) + " market analysis competitors"
+        words = prompt.split()[:7]
+        return " ".join(words)
 
 def search_links(prompt: str, limit: int | None = None) -> List[str]:
     """Production-ready search via Tavily API."""
