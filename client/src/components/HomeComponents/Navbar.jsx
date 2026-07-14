@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [serverStatus, setServerStatus] = useState("checking");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +16,30 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkHealth = async () => {
+      try {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+        const res = await fetch(`${apiUrl}/api/health`);
+        if (res.ok) {
+          setServerStatus("live");
+        } else {
+          setServerStatus("down");
+        }
+      } catch (error) {
+        setServerStatus("down");
+      }
+    };
+
+    // Check immediately on load
+    checkHealth();
+
+    // Check every 10 minutes (600,000 ms) to keep Hugging Face space awake
+    const intervalId = setInterval(checkHealth, 600000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const scrollToSection = (id) => {
@@ -41,6 +66,17 @@ export default function Navbar() {
         </nav>
         
         <div className="flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full bg-slate-50 border border-slate-200 shadow-sm" title="Server Status">
+            {serverStatus === "checking" && <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>}
+            {serverStatus === "live" && <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>}
+            {serverStatus === "down" && <span className="w-2 h-2 rounded-full bg-red-500"></span>}
+            <span className="text-slate-600">
+              {serverStatus === "checking" && "Connecting..."}
+              {serverStatus === "live" && "System Live"}
+              {serverStatus === "down" && "Offline"}
+            </span>
+          </div>
+
           <button onClick={() => scrollToSection("cta")} className="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-5 py-2.5 transition-colors">
             Get Started
           </button>
