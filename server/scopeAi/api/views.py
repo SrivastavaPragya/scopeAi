@@ -70,6 +70,19 @@ def startup_analysis(request):
 
 
 
+import traceback
+
 @api_view(["GET"])
 def health_check(request):
-    return Response({"status": "ok"}, status=status.HTTP_200_OK)
+    try:
+        from django.db import connection
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+        return Response({"status": "ok", "database": "ok"}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({
+            "status": "error",
+            "message": str(e),
+            "traceback": traceback.format_exc()
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
