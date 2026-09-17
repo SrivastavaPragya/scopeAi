@@ -366,3 +366,35 @@ deleted after relevance filtering.
   generation, persistence, and optional presentation generation finish.
 - Automated test modules are present as placeholders, but no application test
   coverage is currently implemented.
+
+## Model Context Protocol (MCP) Integration
+
+ScopeAI includes a FastMCP server that exposes the startup validation pipeline as a tool directly to AI assistants such as Claude Desktop, Antigravity IDE, Cursor, and ChatGPT.
+
+### Exposed Tool
+- **`analyze_startup_idea`**:
+  - `prompt` (*string, required*): Description of the startup idea.
+  - `urls` (*list[string], optional*): Specific reference web pages (defaults to automated Tavily search).
+  - `include_pptx` (*boolean, optional*): Generate a downloadable PowerPoint pitch deck (defaults to `true`).
+
+### Setup with Claude Desktop
+
+Add the following to your `claude_desktop_config.json` (on macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "scopeai": {
+      "command": "/Users/pragya/Documents/ScopeAI/server/.venv/bin/python",
+      "args": [
+        "/Users/pragya/Documents/ScopeAI/server/scopeAi/mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "/Users/pragya/Documents/ScopeAI/server/scopeAi"
+      }
+    }
+  }
+}
+```
+Restart Claude Desktop to start analyzing startup ideas directly from chat!
+

@@ -19,6 +19,7 @@ django_app = get_asgi_application()
 try:
     import mcp_server
     mcp_app = mcp_server.mcp.http_app(transport="sse")
+    # asgi change
     application = Starlette(routes=list(mcp_app.routes) + [Mount("/", app=django_app)])
 except Exception as e:
     import sys
