@@ -8,9 +8,24 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 """
 
 import os
-
 from django.core.asgi import get_asgi_application
+from starlette.applications import Starlette
+from starlette.routing import Mount
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'scopeAi.settings')
 
-application = get_asgi_application()
+django_app = get_asgi_application()
+
+try:
+    import mcp_server
+    mcp_app = mcp_server.mcp.http_app(transport="sse")
+    application = Starlette(routes=[
+        Mount("/sse", app=mcp_app),
+        Mount("/messages", app=mcp_app),
+        Mount("/", app=django_app),
+    ])
+except Exception as e:
+    import sys
+    print(f"Notice: Running standard Django ASGI ({e})", file=sys.stderr)
+    application = django_app
+

@@ -23,4 +23,4 @@ USER app
 EXPOSE 7860
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "scopeAi.wsgi:application", "--bind", "0.0.0.0:7860", "--workers", "2", "--timeout", "180", "--access-logfile", "-", "--error-logfile", "-"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "scopeAi.asgi:application", "--bind", "0.0.0.0:7860", "--workers", "2", "--timeout", "180", "--access-logfile", "-", "--error-logfile", "-"]
