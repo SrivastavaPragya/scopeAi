@@ -22,7 +22,10 @@ def generate_search_query(prompt: str) -> str:
             google_api_key=require_gemini_api_key(),
         )
         structured_llm = llm.with_structured_output(SearchQueryOut)
-        system_prompt = f"Convert this startup idea into a highly focused search query to find its competitors, alternatives, and market space. Only output the core query string. Idea: {prompt}"
+        system_prompt = (
+            f"Convert this startup idea into a concise 3 to 6 word search query to find existing software competitors and products in this exact industry. "
+            f"Focus on the core niche and product type. Avoid generic words like 'competitors', 'alternatives', or 'market'. Idea: {prompt}"
+        )
         res = structured_llm.invoke(system_prompt)
         # Return the focused query directly instead of appending generic terms
         return res.query

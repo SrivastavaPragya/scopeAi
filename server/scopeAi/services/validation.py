@@ -19,7 +19,12 @@ def filter_relevant_pages(prompt: str, pages: List[Tuple[str, str, str]], thresh
         google_api_key=require_gemini_api_key()
     )
     
-    client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+    try:
+        client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, timeout=2)
+        client.get_collections()
+    except Exception:
+        # Fallback to embedded in-memory Qdrant so vector filtering works seamlessly in cloud (HF) and local
+        client = QdrantClient(location=":memory:")
 
     collection_name = f"search_{uuid.uuid4().hex}"
     
@@ -83,7 +88,10 @@ def filter_relevant_pages(prompt: str, pages: List[Tuple[str, str, str]], thresh
         return pages # Fallback: return original pages if validation fails
     finally:
         # Clean up collection
-        client.delete_collection(collection_name=collection_name)
+        try:
+            client.delete_collection(collection_name=collection_name)
+        except Exception:
+            pass
         
     return pages
 
