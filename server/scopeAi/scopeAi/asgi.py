@@ -19,13 +19,10 @@ django_app = get_asgi_application()
 try:
     import mcp_server
     mcp_app = mcp_server.mcp.http_app(transport="sse")
-    application = Starlette(routes=[
-        Mount("/sse", app=mcp_app),
-        Mount("/messages", app=mcp_app),
-        Mount("/", app=django_app),
-    ])
+    application = Starlette(routes=list(mcp_app.routes) + [Mount("/", app=django_app)])
 except Exception as e:
     import sys
     print(f"Notice: Running standard Django ASGI ({e})", file=sys.stderr)
     application = django_app
+
 
