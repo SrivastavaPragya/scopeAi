@@ -34,6 +34,7 @@ import django
 django.setup()
 
 # 3. Import Django models, serializers, and pipeline services
+import anyio
 from django.conf import settings
 from api.models import Job, Source, Result
 from api.serializers import JobSerializer
@@ -46,24 +47,12 @@ mcp = FastMCP(
 )
 
 
-@mcp.tool()
-def analyze_startup_idea(
+def _run_analysis_sync(
     prompt: str,
     urls: list[str] | None = None,
     include_pptx: bool = True,
 ) -> dict:
-    """
-    Conduct an in-depth market validation, competitor research, and pitch deck generation for a startup idea.
-
-    Args:
-        prompt: Description or concept of the startup idea (e.g. 'AI-powered dental clinic scheduling and patient reminder system').
-        urls: Optional list of specific reference web URLs to analyze. If omitted, ScopeAI automatically searches the web via Tavily.
-        include_pptx: Whether to generate a downloadable PowerPoint pitch deck (.pptx). Default is True.
-
-    Returns:
-        Structured market intelligence including executive summary, competitors, problem points,
-        target segments, pricing signals, moats, risks, verified sources, and pitch deck path.
-    """
+    """Synchronous pipeline execution running inside a dedicated worker thread."""
     # 1. Create a job record in the database
     job = Job.objects.create(
         prompt=prompt,
@@ -130,6 +119,28 @@ def analyze_startup_idea(
             "error": str(e),
             "prompt": prompt,
         }
+
+
+@mcp.tool()
+async def analyze_startup_idea(
+    prompt: str,
+    urls: list[str] | None = None,
+    include_pptx: bool = True,
+) -> dict:
+    """
+    Conduct an in-depth market validation, competitor research, and pitch deck generation for a startup idea.
+
+    Args:
+        prompt: Description or concept of the startup idea (e.g. 'AI-powered dental clinic scheduling and patient reminder system').
+        urls: Optional list of specific reference web URLs to analyze. If omitted, ScopeAI automatically searches the web via Tavily.
+        include_pptx: Whether to generate a downloadable PowerPoint pitch deck (.pptx). Default is True.
+
+    Returns:
+        Structured market intelligence including executive summary, competitors, problem points,
+        target segments, pricing signals, moats, risks, verified sources, and pitch deck path.
+    """
+    return await anyio.to_thread.run_sync(_run_analysis_sync, prompt, urls, include_pptx)
+
 
 
 if __name__ == "__main__":
